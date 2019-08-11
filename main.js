@@ -1,4 +1,4 @@
-const { DeckOfCards } = require('./build/Deck');
+const { DeckOfCards } = require('./dist/Deck');
 
 console.log(`Running basic example`);
 

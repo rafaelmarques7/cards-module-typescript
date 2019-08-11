@@ -1,15 +1,17 @@
 {
-  "name": "CardGames",
-  "version": "1.0.0",
+  "name": "cardgames",
+  "version": "1.0.11",
   "description": "Card deck library using TypeScript",
-  "main": "main.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "directories": {
-    "lib": "lib"
+    "dist": "dist"
   },
   "scripts": {
     "example": "node main.js",
     "test": "jest --verbose",
-    "compile": "tsc"
+    "build": "tsc --declaration",
+    "prepublishOnly": "tsc --declaration"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,6 @@
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
-  }
+  },
+  "dependencies": {}
 }
