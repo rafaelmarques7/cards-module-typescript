@@ -1,13 +1,21 @@
-const { DeckOfCards } = require('./compiled/Deck');
+const { DeckOfCards } = require('./build/Deck');
 
+console.log(`Running basic example`);
 
-const deck = new DeckOfCards(52);
-console.log(deck.deck);
-deck.shuffleDeck(3)
-console.log('\n\n\n\n\n\n\n');
-console.log(deck.deck);
+// Build the deck with 52 cards
+const Deck = new DeckOfCards(40);
+console.log(`\nThis is the deck after being built:`);
+console.log(`${Deck.deck.map(card => `${card.value}\t`).join(' ')}`);
 
-for (let index = 0; index < 55; index++) {
-  let card = deck.drawCard();
-  console.log(card);  
+// Shuffle the deck
+Deck.shuffleDeck();
+console.log(`\nThis is the deck after being shuffled:`);
+console.log(`${Deck.deck.map(card => `${card.value}\t`).join(' ')}`);
+
+// Draw some cards
+console.log(`\nDrawing some cards...`)
+for (let index = 1; index < 6; index++) {
+  let card = Deck.drawCard();
+  console.log(`Card ${index} - ${card.value}`);  
 }
+
