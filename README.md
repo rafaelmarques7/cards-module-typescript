@@ -71,23 +71,26 @@ This is the current structure of this library.
 
 ```
 .
-├── main.js             # Example usage script
-├── src                 # The source code
-│   ├── Card.ts
-│   ├── Deck.ts
-│   └── misc.ts
-├── tests               # The unit-tests
+├── src                         # The source code
+│   ├── HigherOrLower.ts
+│   │   └── index.ts
+│   ├── Card.ts
+│   ├── Deck.ts
+│   ├── index.ts
+│   └── misc.ts
+├── tests                     # The unit-tests
 │   ├── Card.test.js
 │   └── Deck.test.js
-├── build               # TypeScript complilation output
+├── build                     # TypeScript complilation output
 │   ├── Card.js
 │   ├── Deck.js
 │   └── misc.js
 ├── jest.config.js
 ├── package.json
 ├── package-lock.json
-├── tsconfig.json
-└── README.md 
+├── tsconfig.json 
+├── main.js                  # Example usage script
+└── README.md
 ```
 
 <hr />
