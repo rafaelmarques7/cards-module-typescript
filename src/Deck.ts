@@ -9,8 +9,9 @@ const validRanks52: Rank[] = ["2", "3", "4", "5", "6", "7", , "8", "9", "10", "J
 
 export class DeckOfCards {
   public deck: Card[] = [];
-  
-  constructor(public numberOfCards: validNumberOfCards) {
+  public numberOfCards: validNumberOfCards = 52;
+
+  constructor(numberOfCards?: validNumberOfCards) {
     this.numberOfCards = numberOfCards;
     this.buildDeck();
   }
@@ -25,16 +26,16 @@ export class DeckOfCards {
   }
 
   drawCard() {
-    if (this.deck.length == 0) {
-      console.log("The Deck of Cards is empty. Can not draw card.")
-      return 0;
-    }
-    return this.deck.pop();
+    return !this.isEmpty() ? this.deck.pop() : null;
   }
 
   shuffleDeck(times = 1) {
     for (var i=1; i <= times; i+=1) {
       shuffleArray(this.deck);
     }
+  }
+
+  isEmpty() {
+    return this.deck.length === 0 ? true : false; 
   }
 }

@@ -1,4 +1,4 @@
-const { Card } = require('../src/Card');
+import { Card } from "../src";
 
 describe('Card', () => {
   
