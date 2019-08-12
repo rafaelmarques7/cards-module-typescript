@@ -7,8 +7,8 @@ const validRanks40 = ["2", "3", "4", "5", "6", "7", "J", "Q", "K", "A"];
 const validRanks52 = ["2", "3", "4", "5", "6", "7", , "8", "9", "10", "J", "Q", "K", "A"];
 class DeckOfCards {
     constructor(numberOfCards) {
-        this.numberOfCards = numberOfCards;
         this.deck = [];
+        this.numberOfCards = 52;
         this.numberOfCards = numberOfCards;
         this.buildDeck();
     }
@@ -21,16 +21,15 @@ class DeckOfCards {
         });
     }
     drawCard() {
-        if (this.deck.length == 0) {
-            console.log("The Deck of Cards is empty. Can not draw card.");
-            return 0;
-        }
-        return this.deck.pop();
+        return !this.isEmpty() ? this.deck.pop() : null;
     }
     shuffleDeck(times = 1) {
         for (var i = 1; i <= times; i += 1) {
             misc_1.shuffleArray(this.deck);
         }
+    }
+    isEmpty() {
+        return this.deck.length === 0 ? true : false;
     }
 }
 exports.DeckOfCards = DeckOfCards;

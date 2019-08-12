@@ -1,11 +1,12 @@
 import { Card } from './Card';
 declare type validNumberOfCards = 40 | 52;
 export declare class DeckOfCards {
-    numberOfCards: validNumberOfCards;
     deck: Card[];
-    constructor(numberOfCards: validNumberOfCards);
+    numberOfCards: validNumberOfCards;
+    constructor(numberOfCards?: validNumberOfCards);
     buildDeck(): void;
-    drawCard(): Card | 0;
+    drawCard(): Card;
     shuffleDeck(times?: number): void;
+    isEmpty(): boolean;
 }
 export {};

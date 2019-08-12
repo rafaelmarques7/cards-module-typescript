@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Deck_1 = require("../src/Deck");
+const Deck_1 = require("../Deck");
 describe('DeckOfCards', () => {
     it('instantiates a deck of card with 40 or 52 cards', () => {
         const Deck40 = new Deck_1.DeckOfCards(40);
