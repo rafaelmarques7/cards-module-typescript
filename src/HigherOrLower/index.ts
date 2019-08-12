@@ -1,7 +1,11 @@
 import { DeckOfCards } from "../Deck";
 
-class HigherOrLower {
-  buildDeckOfCards = () => {
-    const deck = new DeckOfCards();      
+export class HigherOrLower {
+  private Deck: DeckOfCards;
+
+  initGame = () => {
+    this.Deck = new DeckOfCards();          
   }
 }
+
+export default HigherOrLower;
