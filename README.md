@@ -11,7 +11,8 @@ Feel free to clone and to star the repo, if you feel like it.
     - [Deck](#deck)
   - [Example Usage](#example-usage)
   - [Tests](#tests)
-
+  - [Games](#games)
+    - [Higher or Lower](#higher-or-lower)
 
 <hr />
 
@@ -20,24 +21,28 @@ Feel free to clone and to star the repo, if you feel like it.
 
 ```
 .
-├── main.js             # Example usage script
-├── src                 # The source code
-│   ├── Card.ts
-│   ├── Deck.ts
-│   └── misc.ts
-├── tests               # The unit-tests
+├── src                         # The source code
+│   ├── HigherOrLower.ts
+│   │   └── index.ts
+│   ├── Card.ts
+│   ├── Deck.ts
+│   ├── index.ts
+│   └── misc.ts
+├── tests                     # The unit-tests
 │   ├── Card.test.js
 │   └── Deck.test.js
-├── build               # TypeScript complilation output
+├── build                     # TypeScript complilation output
 │   ├── Card.js
 │   ├── Deck.js
 │   └── misc.js
 ├── jest.config.js
 ├── package.json
 ├── package-lock.json
-├── tsconfig.json
-└── README.md 
+├── tsconfig.json 
+├── main.js                  # Example usage script
+└── README.md
 ```
+
 
 ## The Library
 
@@ -190,4 +195,47 @@ Tests:       5 passed, 5 total
 Snapshots:   0 total
 Time:        1.377s
 ```
+
+<hr />
+
+
+## Games
+
+This library will define a number of Games.
+
+### Higher or Lower
+
+**The Higher/Lower game** consists of the following:
+  * **(deal)** The dealer draws a card for himself and for the player. The players gets too see only his own cards. 
+  * **(bet)** The player places a bet on his hand: lower, higher, or draw (compared to the dealer).
+  * **(payoff)** The dealer pays or collects the debt.
+
+This game can have a number of **variations**:
+  * the hands may consist of one or multiple cards;
+  * the hands may be returned to the deck or discarded;
+  * the betting system may be more or lex comples (**see \*footnote**)
+  * the payoff system may be more or lex complex;
+  * this game may be played on a multiplayer table against the dealer, similar to BlackJack;
+  * the bets may be for virtual currency;
+
+To keep it relatively simple and exciting, this is **this Game's model**:
+  * The Deck consists of 52 cards;
+  * The hands consist of 2 cards;
+  * The hands are discarded after the payoff (the deck may be restored afterwards);
+  * The player starts the game with a *stake* of 5 virtual coins.
+  * The player may bet any ammount of virtual coins at any given point.
+  * The payoff is as follows:
+    * 1:1 if player bets high or low, and wins;
+    * 5:1 if player bets draw, and wins;
+    * 0:1 otherwise;
+  * The game finishes when the player leaves the table or looses all his *stake*.
+
+#### *Footnote
+  
+A possible variation to the game may be the following:
+  * **(deal)** The dealer draws a hand (at least two cards) for himself and for the player.
+  * **(initial bet)** The player places a bet. 
+  * **(turn)** The dealer shows one of his cards.
+  * **(final bet)** The player may place a bet on his hand: lower, higher, or draw. This bet is independent from the first one.
+  * **(payoff)** The dealer pays or collects the debt.
 
