@@ -5,5 +5,13 @@
         "outDir": "dist",
         "rootDir": "src",
         "declaration": true
-    }
+    },
+    "include": [
+        // "src/**/*",
+        "src",
+        "tests/**/*"
+    ],
+    "exclude": [
+        "node_modules", 
+    ]
 }

@@ -1,24 +1,29 @@
 {
-  "name": "cardgames",
-  "version": "1.0.11",
-  "description": "Card deck library using TypeScript",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "directories": {
-    "dist": "dist"
-  },
+  "name": "card-games-typescript",
+  "version": "1.0.18",
+  "description": "Basic card deck and game library built with TypeScript",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "example": "node main.js",
     "test": "jest --verbose",
-    "build": "tsc --declaration",
-    "prepublishOnly": "tsc --declaration"
+    "build": "rm -rf dist && tsc",
+    "prepublishOnly": "npm run build && npm version patch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rafaelmarques7/CardsTypeScript.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "card games",
+    "typescript",
+    "card",
+    "games"
+  ],
+  "author": "Rafael Marques",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rafaelmarques7/CardsTypeScript/issues"

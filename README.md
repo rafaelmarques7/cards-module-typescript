@@ -4,19 +4,70 @@ This is a very simple deck-of-cards library built using TypeScript.
 This was built for personal usage, and mostly to play around with TypeScript.
 Feel free to clone and to star the repo, if you feel like it.
 
+
+<hr />
+
+
+## Table of Contents
+
 - [Deck of Cards library using TypeScript](#deck-of-cards-library-using-typescript)
+  - [Table of Contents](#table-of-contents)
+  - [Installation and usage](#installation-and-usage)
+    - [Node.js](#nodejs)
+    - [TypeScript](#typescript)
   - [Project Structure](#project-structure)
   - [The Library](#the-library)
     - [Card](#card)
     - [Deck](#deck)
   - [Example Usage](#example-usage)
   - [Tests](#tests)
+  - [To Do's](#to-dos)
+
+
+<hr />
+
+
+## Installation and usage
+
+This library is packaged and distributed using *npm*.
+
+To install the library, run:
+```bash
+npm install card-games-typescript
+```
+
+
+### Node.js
+
+To use the library from a Node.js project:
+```javascript
+import { Card, DeckOfCards } from 'card-games-typescript';
+
+// You can now use the imported classes
+const card = new Card("2", "diamonds");
+console.log(card);    // output: Card {rank: "2", suite: "diamonds", value: "2 ♦"}
+``` 
+
+### TypeScript
+
+To use the library from a TypeScript project:
+```typescript
+import { Card } from 'card-games-typescript';
+ 
+const card = new Card("2", "diamonds");
+console.log(card); // output: Card {rank: "2", suite: "diamonds", value: "2 ♦"}
+```
 
 
 <hr />
 
 
 ## Project Structure
+
+This is the current structure of this library.
+
+* The library login is contained in `/src`;
+* The library compiles to a `/dist` directory;
 
 ```
 .
@@ -38,6 +89,9 @@ Feel free to clone and to star the repo, if you feel like it.
 ├── tsconfig.json
 └── README.md 
 ```
+
+<hr />
+
 
 ## The Library
 
@@ -191,3 +245,13 @@ Snapshots:   0 total
 Time:        1.377s
 ```
 
+
+<hr />
+
+
+## To Do's
+
+Track the issues and to-do's of this library:
+
+* Extend library with basic game;
+* Verify how to avoid type-violation in node.js projects;

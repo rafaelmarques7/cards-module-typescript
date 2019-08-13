@@ -1,0 +1,9 @@
+# To do not push node modules
+# Note: the package user should always run install
+node_modules/
+
+# Do not push build folder
+# Note: the package.json needs to include a 
+# prepublish tag with `tsc` compile command
+dist/
+
