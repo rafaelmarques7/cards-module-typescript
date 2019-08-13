@@ -1,4 +1,4 @@
-import { HigherOrLower, Player } from '../HigherOrLower';
+import { HigherOrLower, Player } from '../Games/HighOrLow';
 
 describe('Game Higher or Lower: ', () => {
 
