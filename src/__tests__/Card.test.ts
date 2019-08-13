@@ -7,9 +7,14 @@ describe('Card', () => {
     expect(validCard).toBeTruthy;
   });
 
-  it('has a property called value', () => {
+  it('has a property called value with type number', () => {
     const validCard = new Card("A", "clubs");
-    expect(typeof(validCard.value)).toBe('string');
+    expect(validCard.value).toBe(14);
   });
+
+  it('has a property called unicode with type string', () => {
+    const validCard = new Card("A", "clubs");
+    expect(typeof(validCard.unicode)).toBe("string");
+  });  
 
 });

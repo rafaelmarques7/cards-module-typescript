@@ -256,5 +256,51 @@ Time:        1.377s
 
 Track the issues and to-do's of this library:
 
-* Extend library with basic game;
-* Verify how to avoid type-violation in node.js projects;
+#### First iteration result
+
+This game part of the source code will require some refactoring, and above all,
+making the code more logic and robust.
+Remember, the code should be built as to interact via API - aka JSON.
+
+In any case, here's the output
+
+```
+  console.log src/HigherOrLower/index.ts:63
+    
+          Dealer draws, facing down, two cards for himself and other for the player.
+          Upon seeing his hand (♣K ♠9 => 22 points),         the players (credit: 15) places a bet: 
+          2$ on draw!
+          The dealer shows his hand (♠10 ♦Q => 22 points )
+          The player wins!
+          Current credit: 15$.
+        
+
+  console.log src/HigherOrLower/index.ts:63
+    
+          Dealer draws, facing down, two cards for himself and other for the player.
+          Upon seeing his hand (♦8 ♣6 => 14 points),         the players (credit: 16) places a bet: 
+          1$ on high!
+          The dealer shows his hand (♥6 ♥5 => 11 points )
+          The player wins!
+          Current credit: 16$.
+        
+
+  console.log src/HigherOrLower/index.ts:63
+    
+          Dealer draws, facing down, two cards for himself and other for the player.
+          Upon seeing his hand (♣7 ♥9 => 16 points),         the players (credit: 9) places a bet: 
+          7$ on low!
+          The dealer shows his hand (♠3 ♠Q => 15 points )
+          The player looses!
+          Current credit: 9$.
+        
+
+  console.log src/HigherOrLower/index.ts:63
+    
+          Dealer draws, facing down, two cards for himself and other for the player.
+          Upon seeing his hand (♦10 ♥4 => 14 points),         the players (credit: 16) places a bet: 
+          7$ on low!
+          The dealer shows his hand (♥K ♦2 => 15 points )
+          The player wins!
+          Current credit: 16$.
+```
