@@ -14,6 +14,10 @@ interface Bet {
 
 type Hand = [Card, Card];
 
+export class HandHol {
+  
+}
+
 export class HigherOrLower {
   private deck: DeckOfCards = new DeckOfCards();
   public player: Player = new Player();
