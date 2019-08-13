@@ -14,9 +14,42 @@ interface Bet {
 
 type Hand = [Card, Card];
 
+// Class which defines a "Hand" of cards in a Higher/Lower game
 export class HandHol {
-  
+  public cards: Card[] = [];
+
+  constructor(cards?: Card[]) {
+    this.cards = cards ? cards : []; 
+  }
+
+  get numberOfCards() {
+    return this.cards ? this.cards.length : 0;
+  }
+
+  get valueCardsArray() {
+    return this.cards.map((card) => card.value);
+  }
+
+  get valueHand() {
+    const valueCards = this.valueCardsArray.reduce(function(accumulator, currentValue) {
+      return accumulator + currentValue
+    }, 0);  // default vale of reduce is 0
+    return valueCards;
+  }
+
+  toString() {
+    const cardsUnicodeArray = this.cards ? this.cards.map((card) => card.unicode) : [];
+    const handStr = cardsUnicodeArray.reduce(function(accumulator, unicode) {
+      return `${accumulator} ${unicode}`;
+    }, ''); // '' default value of reduce is ''
+    return handStr;
+  }
 }
+
+const hand = new HandHol([new Card('2','diamonds'), new Card('2','diamonds')])
+console.log(hand)
+console.log(hand.toString)
+console.log(hand.valueHand)
 
 export class HigherOrLower {
   private deck: DeckOfCards = new DeckOfCards();

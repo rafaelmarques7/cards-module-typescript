@@ -5,8 +5,21 @@ describe('Game Higher or Lower: ', () => {
 
   it('has a dealCards() method', () => {
     const GameHol = new HigherOrLower();
-    expect(typeof(GameHol['dealCards'])).toBe('function');
+    expect(typeof(GameHol['deal'])).toBe('function');
   });
+
+  // it('', () => {
+
+  // }
+
+  // it('constructor accepts any given number of players', () => {
+  //   const game = new HigherOrLower(3);
+  //   expect(game.players.length).toEqual(3);
+  // });
+
+  // it('constructor accepts payoff ratios to be set', () => {
+  //   expect(true).toEqual(false)
+  // });  
 
 });
 
@@ -25,17 +38,18 @@ describe('HandHol class', () => {
     expect(hand.numberOfCards).toEqual(5);
   });
 
-  it('has attributes: numberOfCards, cards, valueCards', () => {
+  it('has attributes: numberOfCards, cards, valueCards, valueHand', () => {
     const hand = new HandHol();
-    expect(typeof(hand.numberOfCards).toBe('number'));
-    expect(typeof(hand.cards)).toBe('array');
-    expect(typeof(hand.valueCards)).toBe('string');
+    expect(typeof(hand.numberOfCards)).toBe('number');
+    expect(typeof(hand.cards)).toBe('object');
+    expect(typeof(hand.valueCardsArray)).toBe('object');
+    expect(typeof(hand.valueHand)).toBe('number')
   }); 
 
-  it('has methods: handToString', () => {
+  it('has methods: toString', () => {
     const hand = new HandHol();
-    expect(typeof(hand['handToString'])).toBe('function');    
-    expect(typeof(hand.handToString())).toBe('string');
+    expect(typeof(hand['toString'])).toBe('function');    
+    expect(typeof(hand.toString())).toBe('string');
   });
 
   it('sets attribute valueCards to the sum of the value of each card', () => {
@@ -43,10 +57,10 @@ describe('HandHol class', () => {
     // calculates correctly on hand of two cards
     let hand = new HandHol([card, card]);
     let valueCardsExpected = valueCards['3'] + valueCards['3'];
-    expect(hand.valueCards).toEqual(valueCardsExpected);
+    expect(hand.valueHand).toEqual(valueCardsExpected);
     // calculates correctly on hand of three cards
     hand = new HandHol([card, card, card]);
      valueCardsExpected = valueCards['3'] + valueCards['3'] + valueCards['3'];
-    expect(hand.valueCards).toEqual(valueCardsExpected);
+    expect(hand.valueHand).toEqual(valueCardsExpected);
   });
 });
