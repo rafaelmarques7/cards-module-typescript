@@ -1,55 +1,22 @@
 import { DeckOfCards } from "../Deck";
 import { Card } from "../Card";
+import { Player } from "./Player";
+import Bet from "./HighLow/bet";
+import Hand from "./HighLow/hand";
 
-export class Player {
-  public stack: number = 5;
+
+// extend and simplify class by creating handsOnTable: Hand[] attribute,
+// where the first hand is always the dealer,
+// and all subsequent indexes' are from the players;
+// - allow this to be multiplayer!
+
+// write TDD tests for this class
+// think about the structure of the api
+// test for each of the three game phases: deal, bet, payoff;
+
+export class PlayerHol extends Player {
+  cards: Card[] = [];
 }
-
-type BetType = "high" | "low" | "draw";
-
-interface Bet {
-  on: BetType;
-  credit: number
-}
-
-type Hand = [Card, Card];
-
-// Class which defines a "Hand" of cards in a Higher/Lower game
-export class HandHol {
-  public cards: Card[] = [];
-
-  constructor(cards?: Card[]) {
-    this.cards = cards ? cards : []; 
-  }
-
-  get numberOfCards() {
-    return this.cards ? this.cards.length : 0;
-  }
-
-  get valueCardsArray() {
-    return this.cards.map((card) => card.value);
-  }
-
-  get valueHand() {
-    const valueCards = this.valueCardsArray.reduce(function(accumulator, currentValue) {
-      return accumulator + currentValue
-    }, 0);  // default vale of reduce is 0
-    return valueCards;
-  }
-
-  toString() {
-    const cardsUnicodeArray = this.cards ? this.cards.map((card) => card.unicode) : [];
-    const handStr = cardsUnicodeArray.reduce(function(accumulator, unicode) {
-      return `${accumulator} ${unicode}`;
-    }, ''); // '' default value of reduce is ''
-    return handStr;
-  }
-}
-
-const hand = new HandHol([new Card('2','diamonds'), new Card('2','diamonds')])
-console.log(hand)
-console.log(hand.toString)
-console.log(hand.valueHand)
 
 export class HigherOrLower {
   private deck: DeckOfCards = new DeckOfCards();
@@ -89,22 +56,22 @@ export class HigherOrLower {
     this.deal();
     const validBetsOn =  ["high", "low", "draw"];
     const onRandom = validBetsOn[Math.floor(Math.random() * validBetsOn.length)];
-    const creditRandom = Math.floor(Math.random()*this.player.stack) + 1;
+    const creditRandom = Math.floor(Math.random()*this.player.credit) + 1;
     const randomBet = {on: onRandom, credit: creditRandom } as Bet;
     // Places the player bet. Takes credit from him.
     this.placeBet(randomBet);
     // payoff, including initial bet in case of win; 0 in case of player loose
     const payoff = this.calculatePayoff();
-    this.player.stack += payoff;
+    this.player.credit += payoff;
     
     console.log(`
       Dealer draws, facing down, two cards for himself and other for the player.
       Upon seeing his hand (${this.handToString(true)}), \
-        the players (credit: ${this.player.stack}) places a bet: 
+        the players (credit: ${this.player.credit}) places a bet: 
       ${randomBet.credit}\$ on ${randomBet.on}!
       The dealer shows his hand (${this.handToString(false)})
       The player ${payoff ? "wins": "looses"}!
-      Current credit: ${this.player.stack}\$.
+      Current credit: ${this.player.credit}\$.
     `);
   }
 
@@ -119,10 +86,10 @@ export class HigherOrLower {
   placeBet(bet: Bet) {
     // Validate credit and bet
     if (bet.credit < 1) { bet.credit = 0 }
-    if (this.player.stack <= 0) { bet.credit = 0 }
-    if (this.player.stack < bet.credit) { bet.credit = this.player.stack }
+    if (this.player.credit <= 0) { bet.credit = 0 }
+    if (this.player.credit < bet.credit) { bet.credit = this.player.credit }
     // take credit from player
-    this.player.stack -= bet.credit;
+    this.player.credit -= bet.credit;
     // set Bet
     this.betPlayer = bet;
   }
