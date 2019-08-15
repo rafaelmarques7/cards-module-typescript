@@ -1,11 +1,12 @@
+import { Card } from "../../Card";
+
 /*
   Class that defines a "Hand" of cards in a Higher/Lower game
   constructor accepts an array of cards
   exports methods: 
   valueHand(), toString(), numberOfCards(), valueCardsArray()
 */
-
-export default class HandHol {
+export class HandHol {
   public cards: Card[] = [];
 
   constructor(cards?: Card[]) {
