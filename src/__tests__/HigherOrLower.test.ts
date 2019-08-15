@@ -1,6 +1,5 @@
-import { HigherOrLower, PlayerHighLow, HandHol } from '../Games/HighLow';
+import { HigherOrLower, PlayerHighLow, HandHol, Bet } from '../Games/HighLow';
 import { Card, valueCards } from '../Card';
-import Bet from '../Games/HighLow/bet';
 
 describe('Game Higher or Lower: ', () => {
 
@@ -26,8 +25,8 @@ describe('Game Higher or Lower: ', () => {
 
   describe('class method deal()', () => {
     it('each player and dealer receive hands with correct number of cards', () => {
-      const players = [new PlayerHighLow(), new PlayerHighLow()];
       const numCardsPerHand = 3;
+      const players = [new PlayerHighLow(), new PlayerHighLow()];
       const game = new HigherOrLower(players, numCardsPerHand);
       game.deal()
       expect(game.dealer.cards.cards.length).toEqual(numCardsPerHand);    
@@ -51,11 +50,11 @@ describe('Game Higher or Lower: ', () => {
     it('rejects a bet if a player does not have enough credit', () => {
       const players = [new PlayerHighLow()];
       const game = new HigherOrLower(players);
-      const bet = new Bet('high', 4)
+      const bet = new Bet('high', 4);
       game.players[0].credit = 0;
       game.deal();
       game.setBets([bet]);
-      expect(game.players[0].bet).not.toEqual(bet);
+      expect(game.players[0].bet.ammount).toEqual(0);
     });
 
     it('takes the bet ammount from the players credit', () => {
@@ -92,18 +91,6 @@ describe('Game Higher or Lower: ', () => {
     });
   });
 
-  // describe('class method calculatePayoff()', () => {
-  //   it('calculates payoff correctly based on: win/loss, ammount, and rate', () => {
-  //     const game = new HigherOrLower();
-  //     // bet win, ammount: 2 rate: 1:1
-  //     expect(game.calculatePayoff(1, 2, 1)).toEqual(2); 
-  //     // bet win, ammount: 2 rate: 5:1
-  //     expect(game.calculatePayoff(1, 2, 5)).toEqual(10);    
-  //     // bet loss, ammount: 2 rate: 1:1
-  //     expect(game.calculatePayoff(0, 2, 1)).toEqual(0);    
-  //   });
-  // });
-
   describe('class method: payoff()', () => {
     it('determines the winner and pays debts to winners', () => {
       const players = [new PlayerHighLow(), new PlayerHighLow()];
@@ -126,7 +113,7 @@ describe('Game Higher or Lower: ', () => {
       const creditLooserBefore = game.players[1].credit;
       // test method 
       game.payoff();
-      expect(game.players[0].credit).toEqual(creditWinnerBefore + expectedPayoff);
+      expect(game.players[0].credit).toEqual(creditWinnerBefore + betWin.ammount + expectedPayoff);
       expect(game.players[1].credit).toEqual(creditLooserBefore);
     });
   });

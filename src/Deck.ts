@@ -11,19 +11,16 @@ type validNumberOfCards = 40 | 52;
 
 export class DeckOfCards {
   public deck: Card[] = [];
-  public numberOfCards: validNumberOfCards = 52;          // 40 || 52; default to 52
 
-  constructor(numberOfCards?: validNumberOfCards) {
-    this.numberOfCards = numberOfCards;
+  constructor(public numberOfCards?: validNumberOfCards) {
+    this.numberOfCards = numberOfCards == 40 ? numberOfCards : 52;
     this.buildDeck();
   }
 
   buildDeck() {
-    // reset deck
-    this.deck = [];
-    // build deck cycle
+    this.deck = []; // reset deck
     const validRanks = this.numberOfCards == 40 ? validRanks40 : validRanks52;
-    validSuites.forEach(suite => {
+    validSuites.forEach(suite => {    // build deck cycle
       validRanks.forEach(rank => {
         this.deck.push(new Card(rank, suite));
       })

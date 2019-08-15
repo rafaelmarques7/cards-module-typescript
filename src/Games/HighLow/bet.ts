@@ -11,7 +11,7 @@ export interface Payoffs {
   draw: number; 
 }
 
-export default class Bet {
+export class Bet {
   constructor(public on?: BetType, public ammount?: number) {
     this.on = on ? on : 'pass';
     this.ammount = ammount > 0 ? ammount : 0;
