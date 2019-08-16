@@ -1,5 +1,5 @@
 import { Player } from "../Player";
-import Bet from "./bet";
+import { Bet } from "./bet";
 import { HandHol } from "./hand";
 
 export class PlayerHighLow extends Player {
