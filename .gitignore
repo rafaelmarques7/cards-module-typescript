@@ -6,4 +6,3 @@ node_modules/
 # Note: the package.json needs to include a 
 # prepublish tag with `tsc` compile command
 dist/
-

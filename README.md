@@ -71,23 +71,32 @@ This is the current structure of this library.
 
 ```
 .
-├── main.js             # Example usage script
-├── src                 # The source code
-│   ├── Card.ts
-│   ├── Deck.ts
-│   └── misc.ts
-├── tests               # The unit-tests
-│   ├── Card.test.js
-│   └── Deck.test.js
-├── build               # TypeScript complilation output
-│   ├── Card.js
-│   ├── Deck.js
-│   └── misc.js
 ├── jest.config.js
 ├── package.json
 ├── package-lock.json
-├── tsconfig.json
-└── README.md 
+├── README.md
+├── src
+│   ├── Card.ts
+│   ├── Deck.ts
+│   ├── Games
+│   │   ├── HighLow
+│   │   │   ├── bet.ts
+│   │   │   ├── game.ts
+│   │   │   ├── hand.ts
+│   │   │   ├── index.ts
+│   │   │   └── player.ts
+│   │   ├── index.ts
+│   │   └── Player.ts
+│   ├── index.ts
+│   ├── main.js
+│   ├── misc.ts
+│   └── __tests__
+│       ├── Card.test.ts
+│       ├── Deck.test.ts
+│       ├── HigherOrLower.test.ts
+│       └── Player.test.ts
+└── tsconfig.json
+
 ```
 
 <hr />
@@ -253,5 +262,4 @@ Time:        1.377s
 
 Track the issues and to-do's of this library:
 
-* Extend library with basic game;
-* Verify how to avoid type-violation in node.js projects;
+* Verify how to avoid input value type violation in node.js projects;

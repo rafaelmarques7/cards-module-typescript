@@ -1,4 +1,4 @@
-const { DeckOfCards } = require('../src/Deck');
+import { DeckOfCards } from '../Deck';
 
 describe('DeckOfCards', () => {
 
@@ -22,4 +22,9 @@ describe('DeckOfCards', () => {
     expect(card.value).toBeTruthy();
   });
 
+  it('stand alone - has default arguments', () => {
+      const Deck = new DeckOfCards();
+      const card = Deck.drawCard();
+      expect(card.value).toBeTruthy();
+  });
 });
