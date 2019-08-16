@@ -12,9 +12,7 @@ import { Card } from "../../Card";
     * valueCardsArray() 
  */
 export class HandHol {
-  public cards: Card[] = [];
-
-  constructor(cards?: Card[]) {
+  constructor(public cards?: Card[]) {
     this.cards = cards ? cards : []; 
   }
 

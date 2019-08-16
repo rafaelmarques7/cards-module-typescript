@@ -37,14 +37,11 @@ export class HigherOrLower {
    */
   deal(shuffleDeck=false) {
     shuffleDeck ? this.deck.shuffleDeck() : null;
-    const players = this.players.concat([this.dealer]);
-    players.forEach((_, index) => {
-      const hand = new HandHol(this.drawCards(this.numCardsPerHand));
-      if (index == this.players.length) {
-        this.dealer.cards = hand;
-      } else {
-        this.players[index].cards = hand;
-      }
+    // set dealers cards
+    this.dealer.cards = new HandHol(this.drawCards(this.numCardsPerHand));
+    // set all players cards
+    this.players.forEach((_, index) => {
+      this.players[index].cards = new HandHol(this.drawCards(this.numCardsPerHand));
     });
   }
 
@@ -57,10 +54,11 @@ export class HigherOrLower {
    */
   setBets(bets: Bet[]) {
     bets.forEach((bet, index) => {
-      this.players[index].credit < bet.ammount ? bet.ammount=0: null; // validate player credit
-      bet.ammount < 0 ? bet.ammount=0 : null; // validate bet ammound 
+      // validate player credit and bet ammount 
+      this.players[index].credit < bet.ammount ? bet.ammount=0: null; 
+      bet.ammount < 0 ? bet.ammount=0 : null; 
       // set bet
-      this.players[index].bet = bet;
+      this.players[index].bet = bet
       // MONEY: remove from credit
       this.players[index].credit -= bet.ammount;
     });
