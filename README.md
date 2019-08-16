@@ -19,7 +19,6 @@ Feel free to clone and to star the repo, if you feel like it.
   - [The Library](#the-library)
     - [Card](#card)
     - [Deck](#deck)
-  - [Example Usage](#example-usage)
   - [Tests](#tests)
   - [To Do's](#to-dos)
 
@@ -104,7 +103,11 @@ This is the current structure of this library.
 
 ## The Library
 
-This library consists of two main classes: `Card` and `DeckOfCards`.
+This library includes two main classes: `Card` and `DeckOfCards`.
+
+This library also includes a `HigherOrLower` class that implements the logic of a simple card game. 
+There are a number of classes that exist mostly to support this game (`HandHol`, `PlayerHol`, `Bet`).
+This is to simplify and extend the functionality of the game.
 
 ### Card
 
@@ -195,35 +198,6 @@ The DeckOfCards class has the following properties:
 
 <hr />
 
-## Example Usage
-
-```
-➜  CardGames git:(master) ✗ npm run example
-
-> CardGames@1.0.0 example /home/rafael/proj/CardGames
-> node main.js
-
-Running basic example
-
-This is the deck after being built:
-2 ♥	 3 ♥	 4 ♥	 5 ♥	 6 ♥	 7 ♥	 J ♥	 Q ♥	 K ♥	 A ♥	 2 ♠	 3 ♠	 4 ♠	 5 ♠	 6 ♠	 7 ♠	 J ♠	 Q ♠	 K ♠	 A ♠	 2 ♦	 3 ♦	 4 ♦	 5 ♦	 6 ♦	 7 ♦	 J ♦	 Q ♦	 K ♦	 A ♦	 2 ♣	 3 ♣	 4 ♣	 5 ♣	 6 ♣	 7 ♣	 J ♣	 Q ♣	 K ♣	 A ♣	
-Shuffling deck of cards
-
-This is the deck after being shuffled:
-4 ♣	 A ♠	 4 ♦	 2 ♠	 Q ♥	 K ♣	 5 ♥	 6 ♠	 7 ♥	 6 ♥	 J ♣	 3 ♥	 5 ♦	 2 ♦	 Q ♦	 4 ♥	 J ♥	 7 ♣	 K ♦	 7 ♠	 7 ♦	 3 ♠	 A ♦	 A ♣	 2 ♣	 3 ♣	 K ♥	 3 ♦	 5 ♣	 6 ♣	 Q ♠	 J ♦	 J ♠	 2 ♥	 5 ♠	 A ♥	 Q ♣	 4 ♠	 K ♠	 6 ♦	
-
-Drawing some cards...
-Card 1 - 6 ♦
-Card 2 - K ♠
-Card 3 - 4 ♠
-Card 4 - Q ♣
-Card 5 - A ♥
-```
-
-
-<hr />
-
-
 ## Tests
 
 Run all tests with
@@ -236,22 +210,55 @@ npm run test
 Example output:
 
 ```
-➜  CardGames git:(master) ✗ jest --verbose
- PASS  tests/Deck.test.js
+➜  CardGames git:(master) npm run test       
+
+> card-games-typescript@1.1.2 test /home/rafael/proj/CardGames
+> jest --verbose
+
+ PASS  src/__tests__/Player.test.ts
+  Player class
+    ✓ has accessible class properties: username, credit (6ms)
+    ✓ has a setCredit() class method thats overwrites the previous credit (2ms)
+
+ PASS  src/__tests__/Deck.test.ts
   DeckOfCards
-    ✓ instantiates a deck of card with 40 or 52 cards (2ms)
+    ✓ instantiates a deck of card with 40 or 52 cards (6ms)
     ✓ has a shuffle function (1ms)
     ✓ allows to draw cards from the deck
+    ✓ stand alone - has default arguments (1ms)
 
- PASS  tests/Card.test.js
+ PASS  src/__tests__/HigherOrLower.test.ts
+  Game Higher or Lower: 
+    ✓ has class attributes: dealer, players, payoffRates, numCardsPerHand (5ms)
+    class constructor
+      ✓ accepts input(players: PlayerHighLows[], numCardsPerHand: number, payoffRates) (2ms)
+    class method deal()
+      ✓ each player and dealer receive hands with correct number of cards (1ms)
+    class method setBets()
+      ✓ each players gets to set a bet of x ammount on high | low | tie (1ms)
+      ✓ rejects a bet if a player does not have enough credit (1ms)
+      ✓ takes the bet ammount from the players credit (1ms)
+    class method isWinner()
+      ✓ returns true or false based on: player
+    class method: payoff()
+      ✓ determines the winner and pays debts to winners (1ms)
+  HandHol class
+    ✓ constructor takes array of Cards and sets them in cards attribute
+    ✓ has attributes: numberOfCards, cards, valueCards, valueHand (1ms)
+    ✓ has methods: toString (1ms)
+    ✓ sets attribute valueCards to the sum of the value of each card (1ms)
+
+ PASS  src/__tests__/Card.test.ts
   Card
-    ✓ instantiates an object with correct input
-    ✓ has a property called value (1ms)
+    ✓ instantiates an object with correct input (3ms)
+    ✓ has a property called value with type number
+    ✓ has a property called unicode with type string (1ms)
 
-Test Suites: 2 passed, 2 total
-Tests:       5 passed, 5 total
+Test Suites: 4 passed, 4 total
+Tests:       21 passed, 21 total
 Snapshots:   0 total
-Time:        1.377s
+Time:        2s, estimated 3s
+Ran all test suites.
 ```
 
 
