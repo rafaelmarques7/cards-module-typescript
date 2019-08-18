@@ -25,7 +25,11 @@ export class HigherOrLower {
    * Side effect - removes cards from deck
    */
   drawCards(numCards: number) {
-    return new Array(numCards).fill(this.deck.drawCard());
+    let cards = [];
+    for(var i=0; i<numCards; i+=1) {
+      cards.push(this.deck.drawCard());
+    }
+    return cards;
   }
 
   /**

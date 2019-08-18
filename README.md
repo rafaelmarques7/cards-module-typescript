@@ -347,6 +347,7 @@ Example output:
       ✓ accepts input(players: PlayerHighLows[], numCardsPerHand: number, payoffRates) (2ms)
     class method deal()
       ✓ each player and dealer receive hands with correct number of cards (1ms)
+      ✓ the player gets different cards
     class method setBets()
       ✓ each players gets to set a bet of x ammount on high | low | tie (1ms)
       ✓ rejects a bet if a player does not have enough credit (1ms)

@@ -33,6 +33,15 @@ describe('Game Higher or Lower: ', () => {
       expect(game.players[0].cards.cards.length).toEqual(numCardsPerHand);
       expect(game.players[1].cards.cards.length).toEqual(numCardsPerHand);
     });
+
+    it('the player gets different cards', () => {
+      const numCardsPerHand = 2;
+      const players = [new PlayerHighLow()];
+      const game = new HigherOrLower(players, numCardsPerHand);
+      game.deal()
+      const [card_1, card_2] = [game.players[0].cards.cards[0], game.players[0].cards.cards[1]]
+      expect(card_1).not.toEqual(card_2);
+    });
   });
 
   describe('class method setBets()', () => {
