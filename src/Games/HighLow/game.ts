@@ -10,7 +10,7 @@ export class HigherOrLower {
   public players: PlayerHighLow[] = [];
   // default class constants
   public payoffRates: Payoffs =  {'high': 1, 'low': 1, 'draw': 5};
-  public numCardsPerHand: number = 2;
+  public _numCardsPerHand: number = 2;
 
   constructor(players?: PlayerHighLow[], 
     numCardsPerHand?: number, payoffRates?: Payoffs, shuffleDeck = true) {
@@ -19,6 +19,16 @@ export class HigherOrLower {
       numCardsPerHand ? this.numCardsPerHand = numCardsPerHand : null;
       shuffleDeck ? this.deck.shuffleDeck() : null;
   }  
+
+  get numCardsPerHand() { 
+    return this._numCardsPerHand;
+  }
+
+  set numCardsPerHand(value) {
+    if (value >= 1) {
+      this._numCardsPerHand = value;
+    }
+  }
 
   /**
    * Function that returns `numCards` cards. 
