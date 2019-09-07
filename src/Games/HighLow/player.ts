@@ -6,7 +6,7 @@ export class PlayerHighLow extends Player {
   public cards: HandHol = new HandHol();
   public bet: Bet = new Bet();
 
-  constructor(name?: string) {
-    super(name)
+  constructor(name?: string, credit?: number) {
+    super(name, credit)
   }
 }
