@@ -42,6 +42,7 @@ describe('Game Higher or Lower: ', () => {
       const [card_1, card_2] = [game.players[0].cards.cards[0], game.players[0].cards.cards[1]]
       expect(card_1).not.toEqual(card_2);
     });
+    
   });
 
   describe('class method setBets()', () => {
@@ -75,6 +76,15 @@ describe('Game Higher or Lower: ', () => {
       expect(game.players[0].credit).toEqual(5);
       game.setBets([bet]);
       expect(game.players[0].credit).toEqual(1);
+    })
+
+    it('takes a bool variable to not decrease credit', () => {
+      const players = [new PlayerHighLow()];
+      const game = new HigherOrLower(players);
+      const bet = new Bet('high', 2)
+      game.deal();
+      game.setBets([bet], false);
+      expect(game.players[0].credit).toEqual(2); 
     })
   });
 
