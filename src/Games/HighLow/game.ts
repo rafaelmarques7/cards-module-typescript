@@ -96,12 +96,13 @@ export class HigherOrLower {
   /**
    * Method to pay rewards to players that win the bet
    */
-  payoff() {
+  payoff(accountForDiscount=true) {
+    const discountRate = accountForDiscount ? 1 : 0;
     this.players.forEach((_, index) => {
       const isWinner = this.isWinner(this.players[index]);
       const payoffRate = this.payoffRates[this.players[index].bet.on];
       const payoff = isWinner 
-        ? (1 + payoffRate)*this.players[index].bet.ammount  // money was discounted upon bet, so need to (+1) on payoff
+        ? (discountRate + payoffRate) * this.players[index].bet.ammount  // money may have been discounted upon bet, so add discount rate
         : 0;
       // MONEY: add to credit
       this.players[index].credit += payoff;
