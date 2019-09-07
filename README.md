@@ -22,6 +22,7 @@ Feel free to clone and to star the repo, if you feel like it.
     - [HigherOrLower](#higherorlower)
   - [Tests](#tests)
   - [To Do's](#to-dos)
+  - [Latest release](#latest-release)
 
 
 <hr />
@@ -384,3 +385,7 @@ Ran all test suites.
 Track the issues and to-do's of this library:
 
 * Verify how to avoid input value type violation in node.js projects;
+
+## Latest release
+
+7/September/2019
