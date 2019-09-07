@@ -66,7 +66,7 @@ export class HigherOrLower {
    *  * `this.players[:].bet` - set bet
    *  * `this.players[:].credit - discount bet.ammount
    */
-  setBets(bets: Bet[]) {
+  setBets(bets: Bet[], decreaseCredit=true) {
     bets.forEach((bet, index) => {
       // validate player credit and bet ammount 
       this.players[index].credit < bet.ammount ? bet.ammount=0: null; 
@@ -74,7 +74,9 @@ export class HigherOrLower {
       // set bet
       this.players[index].bet = bet
       // MONEY: remove from credit
-      this.players[index].credit -= bet.ammount;
+      if (decreaseCredit) {
+        this.players[index].credit -= bet.ammount;
+      }
     });
   }
 
