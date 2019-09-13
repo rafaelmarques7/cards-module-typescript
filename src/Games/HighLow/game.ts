@@ -5,7 +5,7 @@ import { HandHol } from "./hand";
 
 export class HigherOrLower {
   // attributes for game logic
-  private deck: DeckOfCards = new DeckOfCards();
+  public deck: DeckOfCards = new DeckOfCards();
   public dealer: PlayerHighLow = new PlayerHighLow('dealer');
   public players: PlayerHighLow[] = [];
   // default class constants
