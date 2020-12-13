@@ -20,6 +20,14 @@ describe('DeckOfCards', () => {
     const Deck = new DeckOfCards(40);
     const card = Deck.drawCard();
     expect(card.value).toBeTruthy();
+    expect(Deck.deck.length).toEqual(39);
+  });
+
+  it('drawn cards are accounted for', () => {
+    const Deck = new DeckOfCards(40);
+    const card = Deck.drawCard();
+    expect(card.value).toBeTruthy();
+    expect(Deck.cardsDrawn.length).toEqual(1);
   });
 
   it('stand alone - has default arguments', () => {

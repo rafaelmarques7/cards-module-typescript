@@ -137,6 +137,80 @@ describe('Game Higher or Lower: ', () => {
     });
   });
 
+  describe('class method: determineOdds()', () => {
+    it('calculates the odds of high/low/draw, for hands with one card', () => {
+      const players = [new PlayerHighLow()];
+      const game = new HigherOrLower(players, 1);
+      const cardOne = new Card('2', 'clubs')
+      const handDealer = new HandHol([cardOne]);
+      game.dealer.cards = handDealer;
+      
+      const indexOfCard = game.deck.deck.findIndex(card => card.value === 2 && card.suite  === "clubs");
+      game.deck.deck.splice(indexOfCard, 1);
+
+      const odds = game.calculateOdds()
+
+      const expectedOdds = {
+        high: 48/51,
+        low: 0,
+        draw: 3/51,
+      }
+
+      expect(odds).toEqual(expectedOdds)
+    })
+
+    it('calculates the odds of high/low/draw, for hands with two cards', () => {
+      const players = [new PlayerHighLow()];
+      const game = new HigherOrLower(players, 2);
+      const cardOne = new Card('2', 'clubs')
+      const cardTwo = new Card('3', 'clubs')
+      const handDealer = new HandHol([cardOne, cardTwo]);
+      game.dealer.cards = handDealer;
+      
+      const indexOfCardOne = game.deck.deck.findIndex(card => card.value === 2 && card.suite  === "clubs");
+      game.deck.deck.splice(indexOfCardOne, 1);
+      const indexOfCardTwo = game.deck.deck.findIndex(card => card.value === 3 && card.suite  === "clubs");      
+      game.deck.deck.splice(indexOfCardTwo, 1);
+
+      const odds = game.calculateOdds()
+
+      const expectedOdds = {
+        high: (1225-12)/1225,
+        low: 3/1225,
+        draw: 9/1225,
+      }
+
+      expect(odds).toEqual(expectedOdds)
+    })
+
+    it('calculates the odds of high/low/draw, for hands with three cards', () => {
+      const players = [new PlayerHighLow()];
+      const game = new HigherOrLower(players, 3);
+      const cardOne = new Card('2', 'clubs')
+      const cardTwo = new Card('2', 'hearts')
+      const cardThree = new Card('3', 'clubs')
+      const handDealer = new HandHol([cardOne, cardTwo, cardThree]);
+      game.dealer.cards = handDealer;
+      
+      const indexOfCardOne = game.deck.deck.findIndex(card => card.value === 2 && card.suite  === "clubs");
+      game.deck.deck.splice(indexOfCardOne, 1);
+      const indexOfCardTwo = game.deck.deck.findIndex(card => card.value === 2 && card.suite  === "hearts");      
+      game.deck.deck.splice(indexOfCardTwo, 1);
+      const indexOfCardThree = game.deck.deck.findIndex(card => card.value === 3 && card.suite  === "clubs");      
+      game.deck.deck.splice(indexOfCardThree, 1);
+
+      const odds = game.calculateOdds()
+
+      const expectedOdds = {
+        high: (18424-3)/18424,
+        low: 0/18424,
+        draw: 3/18424,
+      }
+
+      expect(odds).toEqual(expectedOdds)
+    })
+  })
+
 });
 
 // this class supports and is to be used w/ the HighLow class

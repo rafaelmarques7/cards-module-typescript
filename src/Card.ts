@@ -30,4 +30,11 @@ export class Card {
     if (this.value > otherCard.value) { return 1 }
     if (this.value < otherCard.value) { return -1 }
   }
+
+  isSameCard = (otherCard: Card) => {
+    if (this.value === otherCard.value && this.suite === otherCard.suite) {
+      return true
+    }
+    return false
+  }
 }
