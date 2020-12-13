@@ -1,6 +1,6 @@
 {
   "name": "card-games-typescript",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Card deck and high or low game library built with TypeScript",
   "module": "dist/index.js",
   "main": "dist/index.js",
