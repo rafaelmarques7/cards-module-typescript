@@ -4,14 +4,13 @@ This is a very simple deck-of-cards library built using TypeScript.
 This was built for personal usage, and mostly to play around with TypeScript.
 Feel free to clone and to star the repo, if you feel like it.
 
-
-<hr />
-
+---
 
 ## Table of Contents
 
 - [Deck of Cards library using TypeScript](#deck-of-cards-library-using-typescript)
   - [Table of Contents](#table-of-contents)
+  - [Distributions](#distributions)
   - [Installation and usage](#installation-and-usage)
     - [Node.js](#nodejs)
     - [TypeScript](#typescript)
@@ -22,11 +21,21 @@ Feel free to clone and to star the repo, if you feel like it.
     - [HigherOrLower](#higherorlower)
   - [Tests](#tests)
   - [To Do's](#to-dos)
-  - [Latest release](#latest-release)
 
 
-<hr />
+---
 
+## Distributions
+
+This library is available via npm.
+
+To update the version available in npm, run:
+```
+npm run prepublishOnly
+npm publish
+```
+
+---
 
 ## Installation and usage
 
@@ -59,9 +68,7 @@ const card = new Card("2", "diamonds");
 console.log(card); // output: Card {rank: "2", suite: "diamonds", value: "2 ♦"}
 ```
 
-
-<hr />
-
+---
 
 ## Project Structure
 
@@ -100,8 +107,7 @@ This is the current structure of this library.
 
 ```
 
-<hr />
-
+---
 
 ## The Library
 
@@ -147,56 +153,54 @@ The DeckOfCards class has the following properties:
 * shuffleDeck() - function that shuffles the deck, in place
 
 **Usage** example:
-  ```typeScript
-  // Build the deck with 52 cards
-  const Deck = new DeckOfCards(40);  
+```typeScript
+// Build the deck with 52 cards
+const Deck = new DeckOfCards(40);  
 
-  // Shuffle the deck
-  Deck.shuffleDeck();
+// Shuffle the deck
+Deck.shuffleDeck();
 
-  // Draw some cards
-  for (let index = 1; index < 6; index++) {
-    let card = Deck.drawCard();
-    console.log(`Card ${index} - ${card.value}`);  
-  }
-
-
-  ```
+// Draw some cards
+for (let index = 1; index < 6; index++) {
+  let card = Deck.drawCard();
+  console.log(`Card ${index} - ${card.value}`);  
+}
+```
 
 **Source**:
-  ```typeScript
-  export class DeckOfCards {
-    public deck: Card[] = [];
-    
-    constructor(public numberOfCards: validNumberOfCards) {
-      this.numberOfCards = numberOfCards;
-      this.buildDeck();
-    }
+```typeScript
+export class DeckOfCards {
+  public deck: Card[] = [];
+  
+  constructor(public numberOfCards: validNumberOfCards) {
+    this.numberOfCards = numberOfCards;
+    this.buildDeck();
+  }
 
-    buildDeck() {
-      const validRanks = this.numberOfCards == 40 ? validRanks40 : validRanks52;
-      validSuites.forEach(suite => {
-        validRanks.forEach(rank => {
-          this.deck.push(new Card(rank, suite));
-        })
-      });
-    }
+  buildDeck() {
+    const validRanks = this.numberOfCards == 40 ? validRanks40 : validRanks52;
+    validSuites.forEach(suite => {
+      validRanks.forEach(rank => {
+        this.deck.push(new Card(rank, suite));
+      })
+    });
+  }
 
-    drawCard() {
-      if (this.deck.length == 0) {
-        console.log("The Deck of Cards is empty. Can not draw card.")
-        return 0;
-      }
-      return this.deck.pop();
+  drawCard() {
+    if (this.deck.length == 0) {
+      console.log("The Deck of Cards is empty. Can not draw card.")
+      return 0;
     }
+    return this.deck.pop();
+  }
 
-    shuffleDeck(times = 1) {
-      for (var i=1; i <= times; i+=1) {
-        shuffleArray(this.deck);
-      }
+  shuffleDeck(times = 1) {
+    for (var i=1; i <= times; i+=1) {
+      shuffleArray(this.deck);
     }
   }
-  ```
+}
+```
 
 
 ### HigherOrLower
@@ -208,32 +212,32 @@ This is to simplify and extend the functionality of the game.
 **Example usage**:
 
 ```typescript
- describe('class method: payoff()', () => {
-    it('determines the winner and pays debts to winners', () => {
-      const players = [new PlayerHighLow(), new PlayerHighLow()];
-      const game = new HigherOrLower(players, 2);
-      const handDealer = new HandHol([new Card('2', 'clubs'), new Card('3', 'clubs')]);
-      // player one will win
-      const handWin = new HandHol([new Card('4', 'clubs'), new Card('5', 'clubs')]);
-      const betWin = new Bet('high', 1);
-      const expectedPayoff = 1;
-      // player two will loose
-      const handLoose = new HandHol([new Card('2', 'diamonds'), new Card('3', 'diamonds')]);
-      const betLoose = new Bet('low', 1);
-      // state manipulation
-      game.dealer.cards = handDealer;
-      game.players[0].cards = handWin;
-      game.players[1].cards = handLoose;
-      game.setBets([betWin, betLoose]);
-      // players credit before
-      const creditWinnerBefore = game.players[0].credit;
-      const creditLooserBefore = game.players[1].credit;
-      // test method 
-      game.payoff();
-      expect(game.players[0].credit).toEqual(creditWinnerBefore + betWin.ammount + expectedPayoff);
-      expect(game.players[1].credit).toEqual(creditLooserBefore);
-    });
+describe('class method: payoff()', () => {
+  it('determines the winner and pays debts to winners', () => {
+    const players = [new PlayerHighLow(), new PlayerHighLow()];
+    const game = new HigherOrLower(players, 2);
+    const handDealer = new HandHol([new Card('2', 'clubs'), new Card('3', 'clubs')]);
+    // player one will win
+    const handWin = new HandHol([new Card('4', 'clubs'), new Card('5', 'clubs')]);
+    const betWin = new Bet('high', 1);
+    const expectedPayoff = 1;
+    // player two will loose
+    const handLoose = new HandHol([new Card('2', 'diamonds'), new Card('3', 'diamonds')]);
+    const betLoose = new Bet('low', 1);
+    // state manipulation
+    game.dealer.cards = handDealer;
+    game.players[0].cards = handWin;
+    game.players[1].cards = handLoose;
+    game.setBets([betWin, betLoose]);
+    // players credit before
+    const creditWinnerBefore = game.players[0].credit;
+    const creditLooserBefore = game.players[1].credit;
+    // test method 
+    game.payoff();
+    expect(game.players[0].credit).toEqual(creditWinnerBefore + betWin.ammount + expectedPayoff);
+    expect(game.players[1].credit).toEqual(creditLooserBefore);
   });
+});
 ```
 
 
@@ -307,19 +311,11 @@ export class HigherOrLower {
 };
 ```
 
-
-<hr />
-
-
+---
 
 ## Tests
 
-Run all tests with
-
-```bash
-npm run test
-```
-
+Run all tests: `npm run test`
 
 Example output:
 
@@ -376,16 +372,9 @@ Time:        2s, estimated 3s
 Ran all test suites.
 ```
 
-
-<hr />
-
+---
 
 ## To Do's
 
-Track the issues and to-do's of this library:
+---
 
-* Verify how to avoid input value type violation in node.js projects;
-
-## Latest release
-
-7/September/2019
