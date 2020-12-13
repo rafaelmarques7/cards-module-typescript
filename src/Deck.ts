@@ -7,18 +7,22 @@ const validRanks40: Rank[] = ["2", "3", "4", "5", "6", "7", "J", "Q", "K", "A"];
 const validRanks52: Rank[] = ["2", "3", "4", "5", "6", "7", , "8", "9", "10", "J", "Q", "K", "A"];
 
 // types to build deck
-type validNumberOfCards = 40 | 52;
+export type validNumberOfCards = 40 | 52;
 
 export class DeckOfCards {
   public deck: Card[] = [];
+  public cardsDrawn: Card[] = [];
+  public numberOfCards: validNumberOfCards;
 
-  constructor(public numberOfCards?: validNumberOfCards) {
-    this.numberOfCards = numberOfCards == 40 ? numberOfCards : 52;
+  constructor(numberOfCards?: validNumberOfCards) {
+    this.numberOfCards = numberOfCards === 40 ? numberOfCards : 52;
     this.buildDeck();
   }
 
   buildDeck() {
     this.deck = []; // reset deck
+    this.cardsDrawn = []; // reset cards drawn
+
     const validRanks = this.numberOfCards == 40 ? validRanks40 : validRanks52;
     validSuites.forEach(suite => {    // build deck cycle
       validRanks.forEach(rank => {
@@ -28,7 +32,12 @@ export class DeckOfCards {
   }
 
   drawCard() {
-    return !this.isEmpty() ? this.deck.pop() : null;
+    if (!this.isEmpty()) {
+      const cardFromTop = this.deck.pop()
+      this.cardsDrawn.push(cardFromTop)
+      return cardFromTop
+    }
+    return null
   }
 
   shuffleDeck(times = 1) {
@@ -38,6 +47,6 @@ export class DeckOfCards {
   }
 
   isEmpty() {
-    return this.deck.length === 0 ? true : false; 
+    return this.deck.length === 0; 
   }
 }

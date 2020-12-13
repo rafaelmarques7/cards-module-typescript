@@ -1,7 +1,7 @@
 {
   "name": "card-games-typescript",
   "version": "1.2.2",
-  "description": "Basic card deck and game library built with TypeScript",
+  "description": "Card deck and high or low game library built with TypeScript",
   "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,8 +32,11 @@
   "devDependencies": {
     "@types/jest": "^26.0.17",
     "jest": "^26.6.3",
-    "ts-jest": "^26.4.4",
+    "ts-jest": "^26.4.3",
     "typescript": "^4.1.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/mathjs": "^6.0.8",
+    "mathjs": "^8.1.0"
+  }
 }

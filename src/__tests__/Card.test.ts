@@ -17,4 +17,15 @@ describe('Card', () => {
     expect(typeof(validCard.unicode)).toBe("string");
   });  
 
+  it('isSameCard class function returns true only if card has the same value and suite', () => {
+    const cardOne = new Card("A", "clubs");
+    const cardTwo = new Card("A", "spades");
+    const cardThree = new Card("A", "clubs");
+    const cardFour = new Card("K", "clubs");
+
+    expect(cardOne.isSameCard(cardTwo)).toEqual(false)
+    expect(cardOne.isSameCard(cardThree)).toEqual(true)
+    expect(cardOne.isSameCard(cardFour)).toEqual(false)
+  });  
+
 });
